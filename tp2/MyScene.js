@@ -51,9 +51,9 @@ export class MyScene extends CGFscene {
     this.parallelogramVisable = false;
     this.triangleSVisable = false;
     this.triangleBVisable = false;
-    this.tangramVisible = false;
+    this.tangramVisible = true;
     this.cubeVisible = false;
-    this.parallelXZ = false;
+    this.parallelXZ = true;
     this.cubeQuadVisible = true;
 
   }
@@ -122,7 +122,7 @@ export class MyScene extends CGFscene {
     this.multMatrix(sca);
     this.pushMatrix();
     if(this.parallelXZ){
-      this.translate(0.5,0,0.5);
+      this.translate(4.5,0.1,4.5);
       this.rotate(-Math.PI/2,1,0,0);
     } 
     this.pushMatrix();
@@ -176,6 +176,8 @@ export class MyScene extends CGFscene {
     this.popMatrix();
 
     this.popMatrix();
+    this.translate(0,0,-0.1);
+    this.scale(9,9,1);
     this.pushMatrix();
     this.translate(0,0,3)
     this.rotate(-Math.PI/2,1,0,0);
