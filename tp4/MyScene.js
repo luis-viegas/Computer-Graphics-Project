@@ -67,8 +67,8 @@ export class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayQuad = false;
         this.displayMaterial = false;
-        this.displayTangram = true;
-        this.displayCube = false;
+        this.displayTangram = false;
+        this.displayCube = true;
         this.scaleFactor = 2;
         this.selectedTexture = -1;        
         this.wrapS = 0;
