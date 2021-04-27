@@ -71,6 +71,8 @@ export class MyScene extends CGFscene {
         
         this.selectedMapTex = -1;
         this.cylinderSlices = 3;
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
         this.textureIds = { 'Demo CubeMap': 0, 'Test CubeMap': 1};
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -133,12 +135,16 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingObject.update();
+        this.movingObject.update(this.speedFactor);
         //To be done...
     }
 
     updateCylinderDimensions(){
         this.cylinder.updateBuffers(this.cylinderSlices);
+    }
+
+    updateMovingObjectScale(){
+        this.movingObject.updateScale(this.scaleFactor);
     }
 
     updateMapTex(){

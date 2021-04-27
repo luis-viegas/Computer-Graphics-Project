@@ -14,6 +14,7 @@ export class MyMovingObject extends CGFobject {
 		this.orientation = 0.0;
 		this.velocity = [0.0,0.0,0.0];
 		this.position = [0.0,0.0,0.0]; 
+		this.scale = 1;
 		this.tri0 = new MyTriangle(scene);
 		this.tri1 = new MyTriangle(scene);
 		this.tri2 = new MyTriangle(scene);
@@ -43,7 +44,11 @@ export class MyMovingObject extends CGFobject {
 		this.orientation = 0;
 	}
 
-	update(){
+	updateScale(s){
+		this.scale=s;
+	}
+
+	update(speedFactor){
 		var cos = Math.cos(this.orientation);
 		var sin = Math.sin(this.orientation);
 		/**var rotation = [
@@ -52,15 +57,16 @@ export class MyMovingObject extends CGFobject {
 						sin,	0,	cos,	0,
 						0,		0,	0,		1
 					];*/
-		this.position[0] += this.velocity[0]*cos + this.velocity[2]*sin;
+		this.position[0] += (this.velocity[0]*cos + this.velocity[2]*sin)*speedFactor;
 		this.position[1] += this.velocity[1];
-		this.position[2] += this.velocity[2]*cos - this.velocity[0]*sin;
+		this.position[2] += (this.velocity[2]*cos - this.velocity[0]*sin)*speedFactor;
 		// this.pos += rotation * this.velocity;
 	}
 
 	display(){
 		this.scene.pushMatrix();
 		this.scene.translate(this.position[0],this.position[1], this.position[2]);
+		this.scene.scale(this.scale,this.scale,this.scale);
 		this.scene.rotate(this.orientation,0,1,0);
 
 			this.scene.pushMatrix();
