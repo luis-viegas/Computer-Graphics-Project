@@ -23,7 +23,7 @@ export class MyMovingObject extends CGFobject {
 	
 	initMaterials(){
 		this.material = new CGFappearance(this.scene);
-        this.material.setAmbient(1.0, 1.0, 1.0, 1);
+        this.material.setAmbient(1.0, 0.0, 0.0, 1);
         this.material.setDiffuse(1.0, 1.0, 1.0, 1);
         this.material.setSpecular(1.0, 1.0, 1.0, 1);
         this.material.setShininess(10.0);
@@ -66,6 +66,7 @@ export class MyMovingObject extends CGFobject {
 			this.scene.pushMatrix();
 			this.scene.translate(0,0,-0.5);
 			this.scene.rotate(Math.PI,0,1,0);
+			this.material.apply();
 			this.quad.display();
 			this.scene.popMatrix();
 

@@ -1,6 +1,8 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MySphere } from "./MySphere.js";
+import { MyCubeMap } from "./MyCubeMap.js";
+import { MyCylinder } from "./MyCylinder.js";
 
 /**
 * MyScene
@@ -26,30 +28,56 @@ export class MyScene extends CGFscene {
         this.setUpdatePeriod(50);
         
         this.enableTextures(true);
-
+        
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this);
+        this.cubeMap = new MyCubeMap(this);
 
+        this.tex12345 = new CGFtexture(this, "images/tex12345.png");
+        this.cylinder = new MyCylinder(this, 3, this.tex12345);
+        
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setEmission(0,0,0,1);
 		this.defaultAppearance.setShininess(120);
-
+        
 		this.sphereAppearance = new CGFappearance(this);
 		this.sphereAppearance.setAmbient(0.3, 0.3, 0.3, 1);
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
+        
+        this.demoCubeTex_z = new CGFtexture(this, "images/demo_cubemap/front.png");
+        this.demoCubeTex_Z = new CGFtexture(this, "images/demo_cubemap/back.png");
+        this.demoCubeTex_x = new CGFtexture(this, "images/demo_cubemap/left.png");
+        this.demoCubeTex_X = new CGFtexture(this, "images/demo_cubemap/right.png");
+        this.demoCubeTex_y = new CGFtexture(this, "images/demo_cubemap/bottom.png");
+        this.demoCubeTex_Y = new CGFtexture(this, "images/demo_cubemap/top.png");
+        this.demoCubeTex = [this.demoCubeTex_Y, this.demoCubeTex_Z, this.demoCubeTex_X, this.demoCubeTex_z, this.demoCubeTex_x, this.demoCubeTex_y];
 
+        this.testCubeTex_z = new CGFtexture(this, "images/test_cubemap/nz.png");
+        this.testCubeTex_Z = new CGFtexture(this, "images/test_cubemap/pz.png");
+        this.testCubeTex_x = new CGFtexture(this, "images/test_cubemap/nx.png");
+        this.testCubeTex_X = new CGFtexture(this, "images/test_cubemap/px.png");
+        this.testCubeTex_y = new CGFtexture(this, "images/test_cubemap/ny.png");
+        this.testCubeTex_Y = new CGFtexture(this, "images/test_cubemap/py.png");
+        this.testCubeTex = [this.testCubeTex_Y, this.testCubeTex_Z, this.testCubeTex_X, this.testCubeTex_z, this.testCubeTex_x, this.testCubeTex_y];
+        this.cubeTex = [this.demoCubeTex, this.testCubeTex];
 
+        
+        this.selectedMapTex = -1;
+        this.cylinderSlices = 3;
+        this.textureIds = { 'Demo CubeMap': 0, 'Test CubeMap': 1};
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displaySphere = false;
         this.displayMovingObject = true;
+        this.displayCubeMap = true;
+        this.displayCylinder = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -109,6 +137,15 @@ export class MyScene extends CGFscene {
         //To be done...
     }
 
+    updateCylinderDimensions(){
+        this.cylinder.updateBuffers(this.cylinderSlices);
+    }
+
+    updateMapTex(){
+        var texture = this.cubeTex[this.selectedMapTex];
+        this.cubeMap.updateTex(texture[0], texture[1], texture[2], texture[3], texture[4], texture[5]);
+    }
+
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -132,8 +169,15 @@ export class MyScene extends CGFscene {
         //This sphere does not have defined texture coordinates
         if(this.displaySphere)
             this.incompleteSphere.display();
+
         if(this.displayMovingObject)
             this.movingObject.display();
+
+        if(this.displayCubeMap)
+            this.cubeMap.display();
+
+        if(this.displayCylinder)
+            this.cylinder.display();
         // ---- END Primitive drawing section
     }
 }
