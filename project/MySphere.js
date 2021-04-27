@@ -7,10 +7,11 @@ export class MySphere extends CGFobject {
    * @param  {integer} slices - number of slices around Y axis
    * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
    */
-  constructor(scene, slices, stacks) {
+  constructor(scene, slices, stacks, texture) {
     super(scene);
     this.latDivs = stacks * 2;
     this.longDivs = slices;
+    this.texture = texture;
 
     this.initBuffers();
   }
@@ -68,6 +69,7 @@ export class MySphere extends CGFobject {
 
         //--- Texture Coordinates
         // To be done... 
+        this.texCoords.push(longitude/this.longDivs,latitude/this.latDivs);
         // May need some additional code also in the beginning of the function.
         
       }
@@ -78,4 +80,5 @@ export class MySphere extends CGFobject {
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
   }
+  
 }

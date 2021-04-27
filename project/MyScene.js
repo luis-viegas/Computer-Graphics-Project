@@ -50,7 +50,9 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
-        
+        this.earthTex = new CGFtexture(this, "images/earth.jpg");
+        this.sphereAppearance.setTexture(this.earthTex);
+
         this.demoCubeTex_z = new CGFtexture(this, "images/demo_cubemap/front.png");
         this.demoCubeTex_Z = new CGFtexture(this, "images/demo_cubemap/back.png");
         this.demoCubeTex_x = new CGFtexture(this, "images/demo_cubemap/left.png");
