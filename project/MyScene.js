@@ -86,6 +86,8 @@ export class MyScene extends CGFscene {
         this.displayCubeMap = true;
         this.displayCylinder = false;
         this.displayFish = true;
+
+        this.setUpdatePeriod(50);
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -142,6 +144,7 @@ export class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.movingObject.update(this.speedFactor);
+        if(this.displayFish) this.mainFish.update(t);
         //To be done...
     }
 
