@@ -121,7 +121,7 @@ void main() {
     if(aTextureCoord.y >= 0.4){
         //vFinalColor = vec4(0.9,0.1,0.1,1.0);
         vec3 vertexNormal = aVertexNormal * vec3(texture2D(uSampler2, aTextureCoord));
-	    vec3 N = normalize(vec3(uNMatrix * vec4(vertexNormal, 1.0)));
+	    //vec3 N = normalize(vec3(uNMatrix * vec4(vertexNormal, 1.0)));
     	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition*0.7 + vertexNormal*0.3, 1.0);
 
     }

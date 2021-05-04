@@ -1,9 +1,10 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture, CGFshader } from "../lib/CGF.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MySphere } from "./MySphere.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
+import { MySeaFloor } from "./MySeaFloor.js";
 
 /**
 * MyScene
@@ -38,6 +39,8 @@ export class MyScene extends CGFscene {
         this.tex12345 = new CGFtexture(this, "images/tex12345.png");
         this.cylinder = new MyCylinder(this, 3, this.tex12345);
         this.mainFish = new MyFish(this, 16, 8);
+        this.seaFloor = new MySeaFloor(this);
+
         
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -74,6 +77,7 @@ export class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this, this.demoCubeTex_Y, this.demoCubeTex_Z, this.demoCubeTex_X,
                                      this.demoCubeTex_z, this.demoCubeTex_x, this.demoCubeTex_y);
         
+
         this.selectedMapTex = 0;
         this.cylinderSlices = 3;
         this.scaleFactor = 1;
@@ -86,6 +90,7 @@ export class MyScene extends CGFscene {
         this.displayCubeMap = true;
         this.displayCylinder = false;
         this.displayFish = true;
+        this.displayFloor = true;
 
         this.setUpdatePeriod(50);
     }
@@ -196,6 +201,9 @@ export class MyScene extends CGFscene {
         
         if(this.displayFish)
             this.mainFish.display();
+
+        if(this.displayFloor)
+            this.seaFloor.display();
         // ---- END Primitive drawing section
     }
 }

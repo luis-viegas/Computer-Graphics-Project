@@ -1,6 +1,6 @@
 # CGRA 2020/2021
 
-## Group T0xG0y
+## Group T4xG11
 
 ## Project Notes
 
@@ -8,6 +8,11 @@
 
 - In exercise 1 we observed X
 - In exercise 2 we had difficulties in Y
+
+## Fontes
+
+### the textures used in the fish body are free to use and where obtained from https://3dtextures.me/2019/07/24/dragon-scales-001/
+
 
 ## Screenshots
 
