@@ -5,6 +5,7 @@ import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
+import { MySky } from "./MySky.js";
 
 /**
 * MyScene
@@ -41,6 +42,7 @@ export class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 3, this.tex12345);
         this.mainFish = new MyFish(this, 16, 8);
         this.seaFloor = new MySeaFloor(this);
+        this.sky = new MySky(this);
 
         
         this.defaultAppearance = new CGFappearance(this);
@@ -100,6 +102,7 @@ export class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displayFish = true;
         this.displayFloor = true;
+        this.displaySky = true;
 
         this.setUpdatePeriod(50);
     }
@@ -159,6 +162,7 @@ export class MyScene extends CGFscene {
         this.checkKeys();
         this.movingObject.update(this.speedFactor);
         if(this.displayFish) this.mainFish.update(t);
+        if(this.displaySky) this.sky.update(t);
         //To be done...
     }
 
@@ -217,6 +221,9 @@ export class MyScene extends CGFscene {
 
         if(this.displayFloor)
             this.seaFloor.display();
+
+        if(this.displaySky)
+            this.sky.display();
         // ---- END Primitive drawing section
     }
 }
