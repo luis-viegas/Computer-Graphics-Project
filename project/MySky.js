@@ -19,12 +19,12 @@ export class MySky extends CGFobject {
 
         this.shader = new CGFshader(this.scene.gl, 'shaders/skyShader.vert', 'shaders/skyShader.frag');
         this.shader.setUniformsValues({uSampler2: 1});
-        this.shader.setUniformsValues({texScale : 0.5});
+        this.shader.setUniformsValues({texScale : 0.1});
         this.shader.setUniformsValues({timeFactor : 0});
     }
 
     update(t){
-        this.shader.setUniformsValues({ timeFactor: t / 100 % 100 });
+        this.shader.setUniformsValues({ timeFactor: t / 100 % 314 });
     }
 
     display(){

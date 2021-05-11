@@ -6,6 +6,7 @@ import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MySky } from "./MySky.js";
+import { MyPillar } from "./MyPillar.js";
 
 /**
 * MyScene
@@ -43,6 +44,12 @@ export class MyScene extends CGFscene {
         this.mainFish = new MyFish(this, 16, 8);
         this.seaFloor = new MySeaFloor(this);
         this.sky = new MySky(this);
+        this.pillar0 = new MyPillar(this, 16);
+        this.pillar1 = new MyPillar(this, 16);
+        this.pillar2 = new MyPillar(this, 16);
+        this.pillar3 = new MyPillar(this, 16);
+        this.pillar4 = new MyPillar(this, 16);
+        this.pillar5 = new MyPillar(this, 16);
 
         
         this.defaultAppearance = new CGFappearance(this);
@@ -103,6 +110,7 @@ export class MyScene extends CGFscene {
         this.displayFish = true;
         this.displayFloor = true;
         this.displaySky = true;
+        this.displayPillars = true;
 
         this.setUpdatePeriod(50);
     }
@@ -224,6 +232,43 @@ export class MyScene extends CGFscene {
 
         if(this.displaySky)
             this.sky.display();
+        
+        if(this.displayPillars){
+            this.pushMatrix();
+            this.scale(1,10,1);
+
+            this.pushMatrix()
+            this.translate(3,0,-0.5);
+            this.pillar0.display();
+            this.popMatrix();
+            
+            this.pushMatrix();
+            this.translate(3,0,-3.5);
+            this.pillar1.display();
+            this.popMatrix();
+            
+            this.pushMatrix();
+            this.translate(8,0,-0.5);
+            this.pillar2.display();
+            this.popMatrix();
+            
+            this.pushMatrix();
+            this.translate(8,0,-3.5);
+            this.pillar3.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(13,0,-0.5);
+            this.pillar4.display();
+            this.popMatrix();
+            
+            this.pushMatrix();
+            this.translate(13,0,-3.5);
+            this.pillar5.display();
+            this.popMatrix();
+
+            this.popMatrix();
+        }
         // ---- END Primitive drawing section
     }
 }
