@@ -9,9 +9,14 @@
 - In exercise 1 we observed X
 - In exercise 2 we had difficulties in Y
 
-## Fontes
+## Sources
 
 ### the textures used in the fish body are free to use and where obtained from https://3dtextures.me/2019/07/24/dragon-scales-001/
+![fishtex](images/fish_textures/Dragon_Scales_001_basecolor.jpg)
+![fishmap](images/fish_textures/Dragon_Scales_001_normal.jpg)
+### the textures for the fish nest are also free to use and come from https://everytexture.com/everytexture-com-stock-nature-mold-moss-texture-00014/
+![shelltex](images/seashellTex/everytexture.com-stock-nature-mold-moss-texture-00014.jpg)
+![shellmap](images/seashellTex/everytexture.com-stock-nature-mold-moss-texture-00014-normal-1024.jpg)
 
 
 ## Screenshots

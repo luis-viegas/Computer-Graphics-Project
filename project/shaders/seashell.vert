@@ -14,7 +14,7 @@ varying vec2 vTextureCoord;
 
 void main() {
 
-    vec3 vertexNormal = aVertexNormal * (vec3(texture2D(uSampler2, aTextureCoord).z))-vec3(0,0,0.5);
+    vec3 vertexNormal = aVertexNormal * (vec3(texture2D(uSampler2, aTextureCoord)));
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + vertexNormal, 1.0);
 
 	vTextureCoord = aVertexPosition.xy;

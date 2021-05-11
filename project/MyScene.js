@@ -16,6 +16,7 @@ export class MyScene extends CGFscene {
     }
     init(application) {
         super.init(application);
+        this.fov = 1.75;
         this.initCameras();
         this.initLights();
 
@@ -72,17 +73,25 @@ export class MyScene extends CGFscene {
         this.testCubeTex_y = new CGFtexture(this, "images/test_cubemap/ny.png");
         this.testCubeTex_Y = new CGFtexture(this, "images/test_cubemap/py.png");
         this.testCubeTex = [this.testCubeTex_Y, this.testCubeTex_Z, this.testCubeTex_X, this.testCubeTex_z, this.testCubeTex_x, this.testCubeTex_y];
-        this.cubeTex = [this.demoCubeTex, this.testCubeTex];
+
+        this.underWaterTex_z = new CGFtexture(this, "images/underwater_cubemap/front.jpg");
+        this.underWaterTex_Z = new CGFtexture(this, "images/underwater_cubemap/back.jpg");
+        this.underWaterTex_x = new CGFtexture(this, "images/underwater_cubemap/left.jpg");
+        this.underWaterTex_X = new CGFtexture(this, "images/underwater_cubemap/right.jpg");
+        this.underWaterTex_y = new CGFtexture(this, "images/underwater_cubemap/bottom.jpg");
+        this.underWaterTex_Y = new CGFtexture(this, "images/underwater_cubemap/top.jpg");
+        this.underWaterTex = [this.underWaterTex_Y, this.underWaterTex_Z, this.underWaterTex_X, this.underWaterTex_z, this.underWaterTex_x, this.underWaterTex_y];
+        this.cubeTex = [this.demoCubeTex, this.testCubeTex, this.underWaterTex];
         
-        this.cubeMap = new MyCubeMap(this, this.demoCubeTex_Y, this.demoCubeTex_Z, this.demoCubeTex_X,
-                                     this.demoCubeTex_z, this.demoCubeTex_x, this.demoCubeTex_y);
+        this.cubeMap = new MyCubeMap(this, this.underWaterTex_Y, this.underWaterTex_Z, this.underWaterTex_X,
+                                     this.underWaterTex_z, this.underWaterTex_x, this.underWaterTex_y);
         
 
-        this.selectedMapTex = 0;
+        this.selectedMapTex = 2;
         this.cylinderSlices = 3;
         this.scaleFactor = 1;
         this.speedFactor = 1;
-        this.textureIds = { 'Demo CubeMap': 0, 'Test CubeMap': 1};
+        this.textureIds = { 'Demo CubeMap': 0, 'Test CubeMap': 1, 'Under Water' : 2};
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displaySphere = false;
@@ -101,7 +110,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(this.fov, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
 
     setDefaultAppearance() {
@@ -164,6 +173,10 @@ export class MyScene extends CGFscene {
     updateMapTex(){
         var texture = this.cubeTex[this.selectedMapTex];
         this.cubeMap.updateTex(texture[0], texture[1], texture[2], texture[3], texture[4], texture[5]);
+    }
+
+    updateFov(){
+        this.camera.fov = this.fov;
     }
 
     display() {
