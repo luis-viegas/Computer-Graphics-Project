@@ -7,6 +7,7 @@ import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MySky } from "./MySky.js";
 import { MyPillar } from "./MyPillar.js";
+import { MyRock } from "./MyRock.js";
 
 /**
 * MyScene
@@ -37,6 +38,7 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
+        this.testRock = new MyRock(this, 16 , 8);
         this.movingObject = new MyMovingObject(this);
         
         this.tex12345 = new CGFtexture(this, "images/tex12345.png");
@@ -104,6 +106,7 @@ export class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displaySphere = false;
+        this.displayRock = true;
         this.displayMovingObject = false;
         this.displayCubeMap = true;
         this.displayCylinder = false;
@@ -214,6 +217,9 @@ export class MyScene extends CGFscene {
         //This sphere does not have defined texture coordinates
         if(this.displaySphere)
             this.incompleteSphere.display();
+        
+        if(this.displayRock)
+            this.testRock.display();
 
         if(this.displayMovingObject)
             this.movingObject.display();
