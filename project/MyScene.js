@@ -8,6 +8,7 @@ import { MySeaFloor } from "./MySeaFloor.js";
 import { MySky } from "./MySky.js";
 import { MyPillar } from "./MyPillar.js";
 import { MyRock } from "./MyRock.js";
+import { MyRockSet } from "./MyRockSet.js";
 
 /**
 * MyScene
@@ -38,7 +39,7 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.testRock = new MyRock(this, 16 , 8);
+        this.rocks = new MyRockSet(this, 250);
         this.movingObject = new MyMovingObject(this);
         
         this.tex12345 = new CGFtexture(this, "images/tex12345.png");
@@ -219,7 +220,7 @@ export class MyScene extends CGFscene {
             this.incompleteSphere.display();
         
         if(this.displayRock)
-            this.testRock.display();
+            this.rocks.display();
 
         if(this.displayMovingObject)
             this.movingObject.display();
