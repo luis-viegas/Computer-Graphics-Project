@@ -16,7 +16,7 @@ export class MyRockSet extends CGFobject{
     }
 
     display(){
-        for(var i = 0; i < this.numRocks; i++){
+        for(var i = 0; i < this.rocks.length; i++){
             this.rocks[i].display();
         }
     }

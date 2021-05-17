@@ -14,6 +14,8 @@ export class MyFish extends CGFobject {
     
     this.tailOffset = 0.0;
     this.sideFinOffset = 0.0;
+    this.turningLeft = false;
+    this.turningRight = false;
     
     this.bodyMaterial = new CGFappearance(this.scene);
     this.bodyMaterial.setAmbient(0.9, 0.1, 0.1, 1);
@@ -46,14 +48,24 @@ export class MyFish extends CGFobject {
     this.finMaterial.setTextureWrap('REPEAT', 'REPEAT');
   }
 
-  update(t){
-    this.tailOffset = Math.cos(t/100)*(Math.PI/9);
+  update(t, velocity){
+    this.tailOffset = Math.cos((100*velocity+1)*t/300)*(Math.PI/9);
     this.sideFinOffset = Math.cos(t/200)*(Math.PI/8);
+  }
+
+  steer(val){
+    if(val==1) this.turningLeft = true;
+    else this.turningRight = true;
+  }
+
+  stopSteer(val){
+    if(val==1) this.turningLeft = false;
+    else this.turningRight = false;
   }
 
   display(){
     this.scene.pushMatrix();
-    this.scene.translate(0,3,0);
+    // this.scene.translate(0,3,0);
 
     //body
       this.scene.setActiveShader(this.bodyShader);
@@ -107,7 +119,9 @@ export class MyFish extends CGFobject {
       this.scene.translate(0.2,-0.2,0);
       this.scene.scale(0.25,0.25,0.25);
       this.scene.translate(-0.2,0.5,0);
-      this.scene.rotate(this.sideFinOffset,0,0,1);
+      if(!this.turningLeft){
+        this.scene.rotate(this.sideFinOffset,0,0,1);
+      }
       this.scene.translate(0.2,-0.5,0);
       this.scene.rotate(Math.PI/8,0,0,1);
       this.scene.rotate(Math.PI/2,0,1,0);
@@ -118,7 +132,9 @@ export class MyFish extends CGFobject {
       this.scene.translate(-0.2,-0.2,0);
       this.scene.scale(0.25,0.25,0.25);
       this.scene.translate(0.2,0.5,0);
-      this.scene.rotate(-this.sideFinOffset,0,0,1);
+      if(!this.turningRight){
+        this.scene.rotate(-this.sideFinOffset,0,0,1);
+      }
       this.scene.translate(-0.2,-0.5,0);
       this.scene.rotate(-Math.PI/8,0,0,1);
       this.scene.rotate(Math.PI/2,0,1,0);

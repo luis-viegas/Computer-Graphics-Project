@@ -30,6 +30,8 @@ export class MyMovingObject extends CGFobject {
         this.material.setShininess(10.0);
 	}
 
+	
+
 	turn(val){
 		this.orientation += val;
 	}

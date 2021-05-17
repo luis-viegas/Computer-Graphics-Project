@@ -9,6 +9,7 @@ import { MySky } from "./MySky.js";
 import { MyPillar } from "./MyPillar.js";
 import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
+import { MyMovingFish } from "./MyMovingFish.js";
 
 /**
 * MyScene
@@ -39,12 +40,12 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.rocks = new MyRockSet(this, 250);
+        this.rocks = new MyRockSet(this, 50);
         this.movingObject = new MyMovingObject(this);
         
         this.tex12345 = new CGFtexture(this, "images/tex12345.png");
         this.cylinder = new MyCylinder(this, 3, this.tex12345);
-        this.mainFish = new MyFish(this, 16, 8);
+        this.mainFish = new MyMovingFish(this);
         this.seaFloor = new MySeaFloor(this);
         this.sky = new MySky(this);
         this.pillar0 = new MyPillar(this, 16);
@@ -143,27 +144,44 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.movingObject.accelerate(0.01);
+            this.mainFish.accelerate(0.01);
         }
         if (this.gui.isKeyPressed("KeyS"))        {
             text+=" S ";
             keysPressed=true;
-            this.movingObject.accelerate(-0.01);
+            this.mainFish.accelerate(-0.01);
         }
         if (this.gui.isKeyPressed("KeyA"))        {
             text+=" A ";
             keysPressed=true;
-            this.movingObject.turn(0.1);
-        }
+            this.mainFish.turn(0.1);
+            this.mainFish.steer(1);
+        }else this.mainFish.stopSteer(1);
         if (this.gui.isKeyPressed("KeyD"))        {
             text+=" D ";
             keysPressed=true;
-            this.movingObject.turn(-0.1);
-        }
+            this.mainFish.turn(-0.1);
+            this.mainFish.steer(0);
+        }else this.mainFish.stopSteer(0);
         if (this.gui.isKeyPressed("KeyR"))        {
             text+=" R ";
             keysPressed=true;
-            this.movingObject.reset();
+            this.mainFish.reset(this.rocks.rocks);
+        }
+        if (this.gui.isKeyPressed("KeyL"))        {
+            text+=" L ";
+            keysPressed = true;
+            this.mainFish.goUp(-0.1);
+        }
+        if (this.gui.isKeyPressed("KeyP"))        {
+            text+=" P ";
+            keysPressed = true;
+            this.mainFish.goUp(0.1);
+        }
+        if (this.gui.isKeyPressed("KeyC"))        {
+            text+=" C ";
+            keysPressed = true;
+            this.mainFish.grab(this.rocks.rocks,this.seaFloor.nestX,this.seaFloor.nestZ,this.seaFloor.nestSize);
         }
         if (keysPressed)
             console.log(text);
@@ -172,8 +190,10 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingObject.update(this.speedFactor);
-        if(this.displayFish) this.mainFish.update(t);
+        if(this.displayFish){
+            this.mainFish.animate(t);
+            this.mainFish.update(this.speedFactor);
+        }
         if(this.displaySky) this.sky.update(t);
         //To be done...
     }

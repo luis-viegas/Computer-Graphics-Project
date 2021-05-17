@@ -29,7 +29,8 @@ export class MyRock extends CGFobject {
     this.scales[1] = Math.random()/12.5 + 0.04;
     this.scales[2] = Math.random()/12.5 + 0.04;
     this.position[0] = Math.random()*50.0-25;
-    this.position[1] = Math.random()*50.0-25;
+    this.position[1] = 0.0;
+    this.position[2] = Math.random()*50.0-25;
 
     this.vertices = [];
     this.indices = [];
@@ -117,7 +118,7 @@ export class MyRock extends CGFobject {
       // this.bodyNormal.bind(1);
       this.bodyMaterial.apply();
       // this.scene.pushMatrix();
-      this.scene.translate(this.position[0], 0, this.position[1]);
+      this.scene.translate(this.position[0], this.position[1], this.position[2]);
       this.scene.scale(this.scales[0], this.scales[1], this.scales[2]);
       super.display();
       // this.scene.popMatrix();
