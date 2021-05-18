@@ -1,4 +1,5 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture, CGFshader } from "../lib/CGF.js";
+import{ CGFcamera2 } from "./CGFcamera2.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MySphere } from "./MySphere.js";
 import { MyCubeMap } from "./MyCubeMap.js";
@@ -116,6 +117,7 @@ export class MyScene extends CGFscene {
         this.displayFloor = true;
         this.displaySky = true;
         this.displayPillars = true;
+        this.lockCamera = false;
 
         this.setUpdatePeriod(50);
     }
@@ -126,7 +128,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(this.fov, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
+        this.camera = new CGFcamera2(this.fov, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
 
     setDefaultAppearance() {
@@ -195,6 +197,7 @@ export class MyScene extends CGFscene {
             this.mainFish.update(this.speedFactor);
         }
         if(this.displaySky) this.sky.update(t);
+        if(this.lockCamera) this.updateLockCamera();
         //To be done...
     }
 
@@ -213,6 +216,12 @@ export class MyScene extends CGFscene {
 
     updateFov(){
         this.camera.fov = this.fov;
+    }
+
+    updateLockCamera(){
+        this.camera.setTarget(this.mainFish.position);
+        var pos = vec4.sub(vec4.create(), this.camera.target, vec4.scale(vec4.create(),this.camera.calculateDirection(),2));
+        this.camera.position = pos;
     }
 
     display() {
