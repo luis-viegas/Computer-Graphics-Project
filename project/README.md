@@ -4,10 +4,9 @@
 
 ## Project Notes
 
-(add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
+In this project we opted to implement the functionalities of the points 7.1, 7.2 and 7.6
 
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+We implemented every functionality required by the project specification we noticed that our implementation of exercise 7.2 greatly impacts the program's performance.
 
 ## Sources
 
@@ -29,9 +28,11 @@
 ![Screenshot 2](screenshots/proj-t4g11-1b.png)
 
 ![Screenshot 3](screenshots/proj-t4g11-1c.png)
+![Screenshot 4](screenshots/proj-t4g11-2.png)
+![Screenshot 5](screenshots/proj-t4g11-3.png)
+![Screenshot 6](screenshots/proj-t4g11-4.png)
+![Screenshot 7](screenshots/proj-t4g11-5.png)
+![Screenshot 8](screenshots/proj-t4g11-7a.png)
+![Screenshot 9](screenshots/proj-t4g11-7b.png)
+![Screenshot 10](screenshots/proj-t4g11-8.png)
 
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="screenshots/proj-t4g11-1c.png">
-    <source src="screenshots/proj-t4g11-1d.mp4" type="video/mp4">
-  </video>
-</figure>

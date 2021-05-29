@@ -11,6 +11,8 @@ import { MyPillar } from "./MyPillar.js";
 import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyMovingFish } from "./MyMovingFish.js";
+import { MySeaweed } from "./MySeaweed.js";
+import { MySeaweedSet } from "./MySeaweedSet.js";
 
 /**
 * MyScene
@@ -55,6 +57,7 @@ export class MyScene extends CGFscene {
         this.pillar3 = new MyPillar(this, 16);
         this.pillar4 = new MyPillar(this, 16);
         this.pillar5 = new MyPillar(this, 16);
+        this.seaweed = new MySeaweedSet(this, 5);
 
         
         this.defaultAppearance = new CGFappearance(this);
@@ -118,6 +121,7 @@ export class MyScene extends CGFscene {
         this.displaySky = true;
         this.displayPillars = true;
         this.lockCamera = false;
+        this.displaySeaweed = true;
 
         this.setUpdatePeriod(50);
     }
@@ -198,6 +202,7 @@ export class MyScene extends CGFscene {
         }
         if(this.displaySky) this.sky.update(t);
         if(this.lockCamera) this.updateLockCamera();
+        if(this.displaySeaweed) this.seaweed.update(t);
         //To be done...
     }
 
@@ -305,6 +310,8 @@ export class MyScene extends CGFscene {
 
             this.popMatrix();
         }
+        if(this.displaySeaweed)
+            this.seaweed.display();
         // ---- END Primitive drawing section
     }
 }

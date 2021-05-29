@@ -29,6 +29,7 @@ export class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayFloor'). name('Display Floor');
         this.gui.add(this.scene, 'displaySky'). name('Display Sky');
         this.gui.add(this.scene, 'displayPillars'). name('Display Pillars');
+        this.gui.add(this.scene, 'displaySeaweed').name('Display Seaweed');
         this.gui.add(this.scene, 'lockCamera').name('Lock Camera on Fish View');
         this.gui.add(this.scene, 'fov', 1.5, 2).name('Field Of View').onChange(this.scene.updateFov.bind(this.scene));
         this.gui.add(this.scene, 'cylinderSlices', 3, 10).name('Number of cylinder divisions').onChange(this.scene.updateCylinderDimensions.bind(this.scene));
