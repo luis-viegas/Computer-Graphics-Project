@@ -1,12 +1,16 @@
 # CGRA 2020/2021
 
 ## Group T4xG11
+### Francisco Pires up201908044
+### Luis Viegas up201904979
 
 ## Project Notes
 
 In this project we opted to implement the functionalities of the points 7.1, 7.2 and 7.6
 
 We implemented every functionality required by the project specification we noticed that our implementation of exercise 7.2 greatly impacts the program's performance.
+
+We also implemented one extra functionality that we found to be usefull. It is a an option to make the camera follow the fish in its path making it easier to look around the scene.
 
 ## Sources
 
