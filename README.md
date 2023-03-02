@@ -7,3 +7,7 @@
 | Luís Viegas         | 201904979 | up201904979@fe.up.pt                |
 
 ----
+
+## How to run? 
+
+Launch a live server on the root repository folder and navigate to the "project" folder.
