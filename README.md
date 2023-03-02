@@ -1,10 +1,10 @@
-# CGRA 2020/2021
+# Computer Graphics Project
 
-## Group T04G11
-| Name             | Number    | E-Mail             |
-| ---------------- | --------- | ------------------ |
-| Francisco Pires     | 201908044 | up201908044@fe.up.pt                |
-| Luís Viegas         | 201904979 | up201904979@fe.up.pt                |
+## Developed by:
+| Name             |  E-Mail             |
+| ---------------- |  ------------------ |
+| Francisco Pires     | up201908044@fe.up.pt                |
+| Luís Viegas         |  up201904979@fe.up.pt                |
 
 ----
 
